@@ -89,6 +89,12 @@ func NewExponentialBackOff() *ExponentialBackOff {
 		MaxElapsedTime:      DefaultMaxElapsedTime,
 		Clock:               SystemClock,
 	}
+	if b.RandomizationFactor < 0 {
+		b.RandomizationFactor = 0
+	}
+	if b.RandomizationFactor > 1 {
+		b.RandomizationFactor = 1
+	}
 	b.Reset()
 	return b
 }
